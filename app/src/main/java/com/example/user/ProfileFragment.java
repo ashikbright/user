@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 
@@ -37,6 +40,7 @@ public class ProfileFragment extends Fragment {
         datamodel ob5=new datamodel(R.drawable.rate,"Rate Us","",R.drawable.empty);
         dataholder.add(ob5);
         recyclerView.setAdapter(new adapter(dataholder));
+
         return view;
     }
 }
