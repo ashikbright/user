@@ -41,7 +41,7 @@ public class BookingFragment extends Fragment {
         dataholder.add(ob7);
         datamodel ob8=new datamodel(R.drawable.empty,"Welder","",R.drawable.empty);
         dataholder.add(ob8);
-        recyclerView.setAdapter(new adapter(dataholder));
+      //  recyclerView.setAdapter(new adapter(BookingFragment.this, dataholder));
         return view;
     }
 }

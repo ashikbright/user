@@ -9,13 +9,24 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.core.Context;
+
 import java.util.ArrayList;
 
-public class adapter extends RecyclerView.Adapter<adapter.myviewholder>{
-    ArrayList<datamodel> dataholder;
+public class adapter extends FirebaseRecyclerAdapter<datamodel,adapter.myviewholder> {
 
-    public adapter(ArrayList<datamodel> dataholder) {
-        this.dataholder = dataholder;
+    public adapter(@NonNull FirebaseRecyclerOptions<datamodel> options) {
+        super(options);
+    }
+
+    @Override
+    protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull datamodel model) {
+        holder.img.setImageResource(model.getImage());
+        holder.header.setText(model.getHeader());
+        holder.nm.setText(model.getNm());
+        holder.edit.setImageResource(model.getEdit());
     }
 
     @NonNull
@@ -23,19 +34,6 @@ public class adapter extends RecyclerView.Adapter<adapter.myviewholder>{
     public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.singlerow,parent,false);
         return  new myviewholder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull myviewholder holder, int position) {
-        holder.img.setImageResource(dataholder.get(position).getImage());
-        holder.header.setText(dataholder.get(position).getHeader());
-        holder.nm.setText(dataholder.get(position).getNm());
-        holder.edit.setImageResource(dataholder.get(position).getEdit());
-    }
-
-    @Override
-    public int getItemCount() {
-        return dataholder.size();
     }
 
     class myviewholder extends RecyclerView.ViewHolder
@@ -50,4 +48,6 @@ public class adapter extends RecyclerView.Adapter<adapter.myviewholder>{
             edit=itemView.findViewById(R.id.editt);
         }
     }
+
+
 }
